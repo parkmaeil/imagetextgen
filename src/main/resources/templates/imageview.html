@@ -58,6 +58,7 @@
 
             if (response.ok) {
                 const data = await response.json();
+                console.log(data);
                 // Display the analysis results
                 document.getElementById("resultSection").style.display = "block";
                 document.getElementById("uploadedImage").src = data.imageUrl;
