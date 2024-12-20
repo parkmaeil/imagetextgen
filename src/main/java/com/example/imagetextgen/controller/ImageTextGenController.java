@@ -30,25 +30,26 @@ public class ImageTextGenController {
     @PostMapping("/analyze")
     public ResponseEntity<ImageAnalysisVO> getMultimodalResponse(
             @RequestParam("image") MultipartFile imageFile,
-            @RequestParam(defaultValue = "이 이미지에 무엇이 있나요?") String message) throws IOException {
+            @RequestParam(defaultValue = "이 이미지에 무엇이 있나요?") String message)
+                                                                                             throws IOException {
 
         // Ensure the upload directory exists
         File uploadDirectory = new File(uploadPath);
         if (!uploadDirectory.exists()) {
-            uploadDirectory.mkdirs();
+            uploadDirectory.mkdirs(); // uploads
         }
 
         // Save the uploaded file to the specified upload path
         String filename = imageFile.getOriginalFilename();
         Path filePath = Paths.get(uploadPath, filename);
-        Files.write(filePath, imageFile.getBytes());
+        Files.write(filePath, imageFile.getBytes()); // 업로드
 
         // Analyze the image
         String analysisText = imageTextGenService.analyzeImage(imageFile, message);
-
+        // http://localhost:8080/uploads/323232323.png
         String imageUrl = "/uploads/" + filename;
 
         ImageAnalysisVO response = new ImageAnalysisVO(imageUrl, analysisText, null);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(response);  //  { "imageUrl":".....", "analysisText":".........." }
     }
 }

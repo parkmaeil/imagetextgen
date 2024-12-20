@@ -24,7 +24,7 @@ import java.util.regex.Pattern;
 
 @Service
 public class ImageTextGenService {
-
+    //                  ChatClient
     private final ChatModel chatModel;
 
     @Value("classpath:/system.message")

@@ -8,6 +8,6 @@ public class RouteController {
 
     @GetMapping("/imageview")
     public String imageview(){
-        return "imageview";
+        return "imageview"; // imageview.html
     }
 }
